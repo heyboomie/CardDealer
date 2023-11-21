@@ -1,0 +1,28 @@
+import random
+x = 1
+cardList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+def draw(cardList, handCount):
+    hand = []
+    type = ["Diamonds", "Clubs", "Hearts", "Spades"]
+    value = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    for i in range (0, handCount):
+        floatingType = ''
+        floatingValue = ''
+        randcard = random.randint(0,51)
+        if randcard <= 12:
+            floatingType = type[0]
+        elif randcard <=25 and randcard > 12:
+            floatingType = type [1]
+        elif randcard <= 38 and randcard > 25:
+            floatingType = type[2]
+        else:
+            floatingType = type[3]
+        floatingValue = value[(randcard % 13) - 1]
+        card = (floatingValue, floatingType)
+        hand.append(card)
+        print(hand)
+
+draw(cardList, x)
+
+
+
