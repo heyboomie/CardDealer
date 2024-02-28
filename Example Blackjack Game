@@ -1,0 +1,86 @@
+import random
+x = 2 # this value dictates how many cards are drawn, change if neede
+cardList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] # this keeps track of all of the cards you can add more or remove some or even have multple decks with some rejiging
+
+def deal(cardList, handCount):
+    hand = []
+    type = ["Diamonds", "Clubs", "Hearts", "Spades"]
+    value = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    for i in range (0, handCount):
+        matching = True
+        floatingType = ''
+        floatingValue = ''
+        while matching != False:
+            randcard = random.randint(0,51)
+            if cardList[randcard] == 0:
+                matching = False
+                #print("wegood")
+            else:
+                #print("heckles", randcard)
+                matching = True
+        if randcard <= 12:
+            floatingType = type[0]
+        elif randcard <=25 and randcard > 12:
+            floatingType = type [1]
+        elif randcard <= 38 and randcard > 25:
+            floatingType = type[2]
+        else:
+            floatingType = type[3]
+        floatingValue = value[(randcard % 13)]
+        cardList[(randcard)] = 1
+        card = (floatingValue, floatingType)
+        hand.append(card)
+    return (hand, cardList)    
+    
+        #print(hand)
+        #print(cardList)
+def draw(drawCount, hand, cardList):
+    type = ["Diamonds", "Clubs", "Hearts", "Spades"]
+    value = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+    for i in range (0, drawCount):
+        matching = True
+        floatingType = ''
+        floatingValue = ''
+        while matching != False:
+            randcard = random.randint(0,51)
+            if cardList[randcard] == 0:
+                matching = False
+                #print("wegood")
+            else:
+                #print("heckles", randcard)
+                matching = True
+        if randcard <= 12:
+            floatingType = type[0]
+        elif randcard <=25 and randcard > 12:
+            floatingType = type [1]
+        elif randcard <= 38 and randcard > 25:
+            floatingType = type[2]
+        else:
+            floatingType = type[3]
+        floatingValue = value[(randcard % 13)]
+        cardList[(randcard)] = 1
+        card = (floatingValue, floatingType)
+        hand.append(card)
+    return (hand, cardList)    
+#example code
+dealPlayer = deal(cardList, x)
+hand, cardList = dealPlayer
+print("your hand contains: ", hand)
+dealDealer = deal(cardList, x)
+dealerHand, cardList = dealDealer
+print("the dealer is showing: ", dealerHand[0])
+while True:
+    action = input("what are you going to do? (case sensitive: hit, stand): ")
+    if action == "hit":
+        drawPlayer = draw(1, hand, cardList)
+        print("you drew a: ", hand[len(hand) - 1], " your hand now contains: ", hand) 
+    
+    elif action == "stand":
+        print("standing...")
+        break
+
+##print(cardList)
+#draw = draw(1, hand, cardList)
+#hand, cardList = deal
+#print("you drew a: ", hand[len(hand) - 1], " your hand now contains: ", hand) 
+##print(cardList)
