@@ -30,8 +30,16 @@ def deal(cardList, handCount):
         cardList[(randcard)] = 1
         card = (floatingValue, floatingType)
         hand.append(card)
-    return (hand, cardList)    
-    
+    return (hand, cardList) 
+
+def unpack(hand):
+    handValue = []
+    x = len(hand) 
+    for i in range (0, x):
+        floatingvalue, floatingtype = hand[i]
+        handValue.append(floatingvalue)
+    return(handValue) 
+
         #print(hand)
         #print(cardList)
 def draw(drawCount, hand, cardList):
